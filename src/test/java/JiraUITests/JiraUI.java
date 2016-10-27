@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.Thread.sleep;
 
 public class JiraUI {
+    String created_issue="";
 
 
     protected WebDriver driver;
@@ -32,7 +33,7 @@ public class JiraUI {
         driver.close();
     }
     @Test
-    public void jiraLogin(){
+    public void jiraLogin() throws InterruptedException {
 
 
 
@@ -42,11 +43,8 @@ public class JiraUI {
         driver.findElement(By.id("login-form-password")).sendKeys("Polis484)");
         driver.findElement(By.id("login-form-submit")).click();
 
-        try {
             sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
 
 
@@ -63,7 +61,7 @@ public class JiraUI {
 
         driver.findElement(By.xpath("//*[@id='summary']")).clear();
         sleep(3000);
-        driver.findElement(By.xpath("//*[@id='summary']")).sendKeys(" This summary was created by WebDriver");
+        driver.findElement(By.xpath("//*[@id='summary']")).sendKeys(" This summary was created via WebDriver");
         driver.findElement(By.xpath("//*[@id='assignee-field']")).clear();
         sleep(3000);
         driver.findElement(By.xpath("//*[@id='assignee-field']")).sendKeys("katherinebilous", Keys.ENTER);
@@ -71,8 +69,25 @@ public class JiraUI {
 
 
             sleep(3000);
+        created_issue = driver
+                .findElement(By.xpath("//*[@id=\"aui-flag-container\"]/div/div/a"))
+                .getAttribute("data-issue-key");
+        System.out.println(created_issue);
 
 
+    }
+    @Test (dependsOnMethods = {"jiraLogin", "createIssue"})
+    public void deleteIssue() throws InterruptedException {
+         driver.get("http://soft.it-hillel.com.ua:8080/browse/" +created_issue);
+        sleep(5000);
+
+        driver.findElement(By.xpath("//*[@id='opsbar-operations_more']/span[1]")).click();
+        sleep(5000);
+
+        driver.findElement(By.xpath("//*[@id='delete-issue']/span")).click();
+        sleep(5000);
+        driver.findElement(By.xpath("//*[@id='delete-issue-submit']")).click();
+        sleep(3000);
     }
 
 
