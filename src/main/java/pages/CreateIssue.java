@@ -42,27 +42,22 @@ public class CreateIssue {
              e.printStackTrace();
          }
          driver.findElement(By.xpath("//*[@id='summary']")).sendKeys(" This summary was created via WebDriver");
-         //WebElement assignee = driver.findElement(By.xpath("//*[@id=\"assignee-container\"]/label"));
-         WebElement assignee = (new WebDriverWait(driver, 10))
-                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='assignee-container']/label")));
-
-
 
      }
     public void createAssignee(){
-       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id='assignee-field']")).clear();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(By.xpath("//*[@id='assignee-field']")).sendKeys("katherinebilous", Keys.ENTER);
-      //  WebElement createButton = driver.findElement(By.xpath("//*[@id='create_link']"));
-        WebElement popup = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"aui-flag-container\"]/div/div")));
-
 
     }
     public void  getIssueKey(){
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         issueKey = driver
-                .findElement(By.xpath("//*[@id=\"aui-flag-container\"]/div/div/a"))
+                .findElement(By.xpath("//*[@id='aui-flag-container']/div/div/a"))
                 .getAttribute("data-issue-key");
         System.out.println(issueKey);
     }
