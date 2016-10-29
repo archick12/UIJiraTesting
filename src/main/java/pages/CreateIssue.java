@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-
 public class CreateIssue {
     String issueKey ="";
     private WebDriver driver;
@@ -35,12 +33,18 @@ public class CreateIssue {
      public void createSummary(){
          //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
          WebElement reporter = (new WebDriverWait(driver, 10))
-                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"reporter-field\"]")));
+                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='reporter-field']")));
          driver.findElement(By.xpath("//*[@id='summary']")).clear();
+
+         try {
+             Thread.sleep(3000);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
          driver.findElement(By.xpath("//*[@id='summary']")).sendKeys(" This summary was created via WebDriver");
          //WebElement assignee = driver.findElement(By.xpath("//*[@id=\"assignee-container\"]/label"));
          WebElement assignee = (new WebDriverWait(driver, 10))
-                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"assignee-container\"]/label")));
+                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='assignee-container']/label")));
 
 
 
