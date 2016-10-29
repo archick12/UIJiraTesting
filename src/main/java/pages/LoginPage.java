@@ -9,6 +9,8 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {this.driver = driver;}
 
+
+
     public void enterUsername(){
         driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");
     }

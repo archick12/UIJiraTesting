@@ -28,11 +28,10 @@ public class JiraUI {
     @BeforeTest
     public void setUp(){
         driver= new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://soft.it-hillel.com.ua:8080/login.jsp");
 
         //Explicit Waits
-        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
+       WebElement myDynamicElement = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.id("header")));
 
         LoginPage loginPage= new LoginPage(driver);
@@ -49,42 +48,28 @@ public class JiraUI {
         driver.close();
     }
     @Test
-    public void jiraLogin() throws InterruptedException {
+    public void jiraLogin()  {
+
+
+        driver= new ChromeDriver();
+        driver.get("http://soft.it-hillel.com.ua:8080/login.jsp");
         driver.manage().window().maximize();
 
+        //Explicit Waits
+        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("header")));
 
         LoginPage loginPage= new LoginPage(driver);
         loginPage.enterUsername();
         loginPage.enterPassword();
         loginPage.clickLogin();
-
-
-
-
-
-
-
-
-
-      //  driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");
-      //  driver.findElement(By.id("login-form-password")).sendKeys("Polis484)");
-      //  driver.findElement(By.id("login-form-submit")).click();
-
-
 
 
 
     }
     @Test
     public void createIssue()  {
-
         driver.manage().window().maximize();
-        LoginPage loginPage= new LoginPage(driver);
-        loginPage.enterUsername();
-        loginPage.enterPassword();
-        loginPage.clickLogin();
-
-
         CreateIssue createIssue = new CreateIssue(driver);
         createIssue.createBug();
         createIssue.createSummary();

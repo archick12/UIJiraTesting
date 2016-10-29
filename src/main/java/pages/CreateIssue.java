@@ -20,17 +20,22 @@ public class CreateIssue {
     public CreateIssue(WebDriver driver) {this.driver = driver;}
 
     public void createBug(){
-       // WebElement createButton = (new WebDriverWait(driver, 10))
-              //  .until(ExpectedConditions.presenceOfElementLocated(By.id("create_link")));
-      // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement createButton = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"create_link\"]")));
+
         driver.findElement(By.xpath("//*[@id=\"create_link\"]")).click();
-        driver.findElement(By.xpath("//*[@id='issuetype-field']")).clear();
-        driver.findElement(By.xpath("//*[@id='issuetype-field']")).sendKeys("Bug");
         WebElement summary = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"summary\"]")));
+        driver.findElement(By.xpath("//*[@id='issuetype-field']")).clear();
+        driver.findElement(By.xpath("//*[@id='issuetype-field']")).sendKeys("Bug");
+
     }
      public void createSummary(){
          //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+         WebElement reporter = (new WebDriverWait(driver, 10))
+                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"reporter-field\"]")));
          driver.findElement(By.xpath("//*[@id='summary']")).clear();
          driver.findElement(By.xpath("//*[@id='summary']")).sendKeys(" This summary was created via WebDriver");
          //WebElement assignee = driver.findElement(By.xpath("//*[@id=\"assignee-container\"]/label"));
@@ -43,8 +48,8 @@ public class CreateIssue {
         driver.findElement(By.xpath("//*[@id='assignee-field']")).clear();
         driver.findElement(By.xpath("//*[@id='assignee-field']")).sendKeys("katherinebilous", Keys.ENTER);
       //  WebElement createButton = driver.findElement(By.xpath("//*[@id='create_link']"));
-        WebElement createButton = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='create_link']")));
+        WebElement popup = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"aui-flag-container\"]/div/div")));
 
 
     }
