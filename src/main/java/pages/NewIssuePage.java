@@ -24,18 +24,32 @@ public class NewIssuePage {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='create_link']")));
         createButton.click();
 
-        WebElement summary = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='summary']")));
+        WebElement issueType = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='issuetype-field']")));
 
-        summary.clear();
-        summary.sendKeys("Bug");
+        issueType.clear();
+        issueType.sendKeys("Bug");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        issueType.sendKeys(Keys.ENTER);
+
     }
 
     public void createSummary() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         WebElement summary = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='summary']")));
         summary.clear();
         summary.sendKeys(" This summary was created via WebDriver");
+
     }
 
     public void createAssignee() {
@@ -58,8 +72,10 @@ public class NewIssuePage {
         driver.findElement(By.xpath("//*[@id='opsbar-operations_more']/span[1]")).click();
         driver.findElement(By.xpath("//*[@id='delete-issue']/span")).click();
         driver.findElement(By.xpath("//*[@id='delete-issue-submit']")).click();
-
-
     }
+
+
+
+
 
 }
