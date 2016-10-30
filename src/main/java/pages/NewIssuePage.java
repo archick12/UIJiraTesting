@@ -29,18 +29,14 @@ public class NewIssuePage {
 
         issueType.clear();
         issueType.sendKeys("Bug");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         issueType.sendKeys(Keys.ENTER);
 
     }
 
     public void createSummary() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -73,9 +69,6 @@ public class NewIssuePage {
         driver.findElement(By.xpath("//*[@id='delete-issue']/span")).click();
         driver.findElement(By.xpath("//*[@id='delete-issue-submit']")).click();
     }
-
-
-
 
 
 }

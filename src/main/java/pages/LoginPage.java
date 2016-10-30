@@ -12,9 +12,7 @@ public class LoginPage {
     }
 
 
-    public void enterUsername() {
-        driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");
-    }
+    public void enterUsername() {driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");}
 
     public void enterPassword() {
         driver.findElement(By.id("login-form-password")).sendKeys("Polis484)");

@@ -20,35 +20,53 @@ public class UpdateIssuePage {
         this.driver = driver;
     }
 
-    public  void updateReporter(){
+    public void updateReporter() {
         driver.get("http://soft.it-hillel.com.ua:8080/browse/" + issueKey);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        driver.findElement(By.xpath("//*[@id='issue_summary_reporter_katherinebilous']")).click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        driver.findElement(By.xpath("//*[@id='reporter-field']")).sendKeys(Keys.DELETE);
 
-        WebElement reporter = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='reporter-val']")));
+        driver.findElement(By.xpath("//*[@id='reporter-field']")).sendKeys("a.a.piluck2 ", Keys.ENTER);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        reporter.click();
-        reporter.sendKeys(Keys.DELETE);
-
-        //reporter.clear();
-        reporter.sendKeys("Arthur Piluck 2", Keys.ENTER);
 
     }
 
-    public void updatePriority(){
+    public void updatePriority() {
         driver.get("http://soft.it-hillel.com.ua:8080/browse/" + issueKey);
         WebElement priority = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='priority-val']")));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        priority.click();
+        WebElement priorityChange = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='priority-field']")));
-        priority.clear();
-        priority.sendKeys("Low", Keys.ENTER);
+
+        priorityChange.clear();
+
+        priorityChange.sendKeys("Low", Keys.ENTER, Keys.ENTER);
+
         // TODO assert priority low
 
     }
+
     public void getIssueKey() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         issueKey = driver
@@ -56,7 +74,8 @@ public class UpdateIssuePage {
                 .getAttribute("data-issue-key");
         System.out.println(issueKey);
     }
-    public void addComment(){
+
+    public void addComment() {
         driver.get("http://soft.it-hillel.com.ua:8080/browse/" + issueKey);
         WebElement comment = driver.findElement(By.xpath("//*[@id='comment-issue']/span[1]"));
         comment.click();
@@ -68,15 +87,38 @@ public class UpdateIssuePage {
         // TODO assert button
 
     }
-    public void updateIssueTitle(){
-        WebElement title = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.name("Just now")));
-        WebElement changeIssueTitle = driver.findElement(By.xpath(" //*[@id='summary-val']"));
-        changeIssueTitle.click();
-        // TODO add assert text bar
-        changeIssueTitle.clear();
-        changeIssueTitle.sendKeys(" This title was changed via WebDriver", Keys.ENTER);
 
+    public void updateIssueTitle() {
+        driver.get("http://soft.it-hillel.com.ua:8080/browse/" + issueKey);
+        WebElement changeIssueTitle = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='summary-val']")));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        changeIssueTitle.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // TODO add assert text bar
+        WebElement changeIssueSummary = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='summary']")));
+        changeIssueSummary.clear();
+
+        changeIssueSummary.sendKeys(" This title was changed via WebDriver", Keys.ENTER);
+
+    }
+
+    public void deleteIssue() {
+        driver.get("http://soft.it-hillel.com.ua:8080/browse/" + issueKey);
+        driver.findElement(By.xpath("//*[@id='opsbar-operations_more']/span[1]")).click();
+        driver.findElement(By.xpath("//*[@id='delete-issue']/span")).click();
+        driver.findElement(By.xpath("//*[@id='delete-issue-submit']")).click();
     }
 
 
