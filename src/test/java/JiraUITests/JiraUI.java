@@ -10,6 +10,10 @@ import pages.LoginPage;
 import pages.LogoutPage;
 import pages.NewIssuePage;
 import pages.UpdateIssuePage;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class JiraUI {
     String issueKey = "";
@@ -30,6 +34,9 @@ public class JiraUI {
 
     }
 
+    @TestCaseId("TMS-1")
+    @Features("Issue")
+    @Stories({"CRUDIssue"})
     @Test
     public void createIssue() {
         NewIssuePage newIssuePage = new NewIssuePage(driver);
@@ -42,7 +49,9 @@ public class JiraUI {
 
     }
 
-
+    @TestCaseId("TMS-2")
+    @Features("Issue")
+    @Stories({"CRUDIssue"})
     @Test
     public void updateIssueAddComment() {
         NewIssuePage newIssuePage = new NewIssuePage(driver);
@@ -72,6 +81,8 @@ public class JiraUI {
         // TODO assert
     }
 
+    @TestCaseId("TMS-2")
+    @Issue("CEV-9933") // Это ссылка на баг
     @Test
     public void updateIssueUpdateReporter() {
         NewIssuePage newIssuePage = new NewIssuePage(driver);
