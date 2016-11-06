@@ -3,7 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 
 public class RemoteDriverManager {
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
+    private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
     public static WebDriver getDriver() {
         return webDriver.get();

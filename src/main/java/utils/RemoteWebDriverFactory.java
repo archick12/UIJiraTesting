@@ -1,5 +1,6 @@
 package utils;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -26,8 +27,9 @@ public class RemoteWebDriverFactory {
         }
         if (browserName.toLowerCase().contains("chrome")) {
             capability = DesiredCapabilities.chrome();
-//            capability.setBrowserName("chrome" );
-//            capability.setPlatform(Platform.LINUX);
+            capability.setBrowserName("chrome" );
+            capability.setPlatform(Platform.LINUX);
+            capability.setCapability("takesScreenshot", true);
         }
 
         WebDriver driver = new RemoteWebDriver(hostURL, capability);
