@@ -1,20 +1,20 @@
 package pages;
 
 
-import com.google.common.annotations.VisibleForTesting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.RemoteDriverManager;
 
 
 public class LogoutPage {
 
     private WebDriver driver;
 
-    public LogoutPage(WebDriver driver) {
-        this.driver = driver;
+    public LogoutPage() {
+        this.driver = RemoteDriverManager.getDriver();;
     }
 
 

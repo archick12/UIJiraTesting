@@ -1,10 +1,6 @@
 package JiraUITests;
 
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.LogoutPage;
@@ -19,34 +15,25 @@ public class JiraUI {
     String issueKey = "";
 
 
-    protected WebDriver driver;
-
-    @BeforeTest
-    public void setUp() {
-        driver = new FirefoxDriver();
-        driver.get("http://soft.it-hillel.com.ua:8080/login.jsp");
-        driver.manage().window().maximize();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername();
-        loginPage.enterPassword();
-        loginPage.clickLogin();
-
-
-    }
-
     @TestCaseId("TMS-1")
     @Features("Issue")
     @Stories({"CRUDIssue"})
     @Test
     public void createIssue() {
-        NewIssuePage newIssuePage = new NewIssuePage(driver);
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUsername();
+        loginPage.enterPassword();
+        loginPage.clickLogin();
+
+        NewIssuePage newIssuePage = new NewIssuePage();
         newIssuePage.createBug();
         newIssuePage.createSummary();
         newIssuePage.createAssignee();
         newIssuePage.getIssueKey();
         newIssuePage.deleteIssue();
 
-
+        LogoutPage logout = new LogoutPage();
+        logout.Logout();
     }
 
     @TestCaseId("TMS-2")
@@ -54,8 +41,13 @@ public class JiraUI {
     @Stories({"CRUDIssue"})
     @Test
     public void updateIssueAddComment() {
-        NewIssuePage newIssuePage = new NewIssuePage(driver);
-        UpdateIssuePage updateIssuePage = new UpdateIssuePage(driver);
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUsername();
+        loginPage.enterPassword();
+        loginPage.clickLogin();
+
+        NewIssuePage newIssuePage = new NewIssuePage();
+        UpdateIssuePage updateIssuePage = new UpdateIssuePage();
         newIssuePage.createBug();
         newIssuePage.createSummary();
         newIssuePage.createAssignee();
@@ -79,14 +71,21 @@ public class JiraUI {
 
 
         // TODO assert
+        LogoutPage logout = new LogoutPage();
+        logout.Logout();
     }
 
     @TestCaseId("TMS-2")
     @Issue("CEV-9933") // Это ссылка на баг
     @Test
     public void updateIssueUpdateReporter() {
-        NewIssuePage newIssuePage = new NewIssuePage(driver);
-        UpdateIssuePage updateIssuePage = new UpdateIssuePage(driver);
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUsername();
+        loginPage.enterPassword();
+        loginPage.clickLogin();
+
+        NewIssuePage newIssuePage = new NewIssuePage();
+        UpdateIssuePage updateIssuePage = new UpdateIssuePage();
         newIssuePage.createBug();
         newIssuePage.createSummary();
         newIssuePage.createAssignee();
@@ -109,12 +108,19 @@ public class JiraUI {
 
 
         // TODO assert
+        LogoutPage logout = new LogoutPage();
+        logout.Logout();
     }
 
     @Test
     public void updatePriority() {
-        NewIssuePage newIssuePage = new NewIssuePage(driver);
-        UpdateIssuePage updateIssuePage = new UpdateIssuePage(driver);
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUsername();
+        loginPage.enterPassword();
+        loginPage.clickLogin();
+
+        NewIssuePage newIssuePage = new NewIssuePage();
+        UpdateIssuePage updateIssuePage = new UpdateIssuePage();
         newIssuePage.createBug();
         newIssuePage.createSummary();
         newIssuePage.createAssignee();
@@ -137,12 +143,20 @@ public class JiraUI {
 
 
         // TODO assert
+        LogoutPage logout = new LogoutPage();
+        logout.Logout();
     }
 
     @Test
     public void updateIssueTitle() {
-        NewIssuePage newIssuePage = new NewIssuePage(driver);
-        UpdateIssuePage updateIssuePage = new UpdateIssuePage(driver);
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUsername();
+        loginPage.enterPassword();
+        loginPage.clickLogin();
+
+
+        NewIssuePage newIssuePage = new NewIssuePage();
+        UpdateIssuePage updateIssuePage = new UpdateIssuePage();
         newIssuePage.createBug();
         newIssuePage.createSummary();
         newIssuePage.createAssignee();
@@ -163,27 +177,11 @@ public class JiraUI {
         }
         updateIssuePage.deleteIssue();
 
-
+        LogoutPage logout = new LogoutPage();
+        logout.Logout();
         // TODO assert
     }
 
-
-    @AfterTest
-    public void tearDown() {
-
-
-        driver.close(); // TODO investigate why browser is not closed
-        driver.quit();
-
-    }
-
-
-    @Test
-    public void Logout() {
-        LogoutPage logout = new LogoutPage(driver);
-        logout.Logout();
-
-    }
 
 }
 

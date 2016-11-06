@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.RemoteDriverManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,8 +16,8 @@ public class NewIssuePage {
     private WebDriver driver;
 
 
-    public NewIssuePage(WebDriver driver) {
-        this.driver = driver;
+    public NewIssuePage() {
+        this.driver = RemoteDriverManager.getDriver();
     }
 
     public void createBug() {

@@ -4,16 +4,24 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.allure.annotations.Step;
+import utils.RemoteDriverManager;
 
 public class LoginPage {
     private WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = RemoteDriverManager.getDriver();
+
+    }
+
+    public void open() {
+        driver.get("http://soft.it-hillel.com.ua:8080/login.jsp");
     }
 
     @Step("Enter user name")
-    public void enterUsername() {driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");}
+    public void enterUsername() {
+        driver.findElement(By.id("login-form-username")).sendKeys("katherinebilous");
+    }
 
     @Step("Enter user password")
     public void enterPassword() {
