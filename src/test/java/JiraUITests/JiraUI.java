@@ -23,6 +23,7 @@ public class JiraUI {
     @Test
     public void createIssue() {
         LoginPage loginPage = new LoginPage();
+        loginPage.open();
         loginPage.enterUsername();
         loginPage.enterPassword();
         loginPage.clickLogin();
@@ -44,6 +45,7 @@ public class JiraUI {
     @Test
     public void updateIssueAddComment() {
         LoginPage loginPage = new LoginPage();
+        loginPage.open();
         loginPage.enterUsername();
         loginPage.enterPassword();
         loginPage.clickLogin();

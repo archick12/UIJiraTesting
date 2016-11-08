@@ -13,7 +13,7 @@ public class RemoteWebDriverFactory {
     public static WebDriver createInstance(String browserName) {
         URL hostURL = null;
         try {
-            hostURL = new URL("http://192.168.0.62:4444/wd/hub");
+            hostURL = new URL("http://127.0.0.1:4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -21,6 +21,8 @@ public class RemoteWebDriverFactory {
 
         if (browserName.toLowerCase().contains("firefox")) {
             capability = DesiredCapabilities.firefox();
+            capability.setBrowserName("firefox" );
+            capability.setPlatform(Platform.LINUX);
         }
         if (browserName.toLowerCase().contains("internet")) {
             capability = DesiredCapabilities.internetExplorer();
@@ -29,11 +31,10 @@ public class RemoteWebDriverFactory {
             capability = DesiredCapabilities.chrome();
             capability.setBrowserName("chrome" );
             capability.setPlatform(Platform.LINUX);
-            capability.setCapability("takesScreenshot", true);
         }
 
         WebDriver driver = new RemoteWebDriver(hostURL, capability);
-        driver.manage().window().maximize();
+      //  driver.manage().window().maximize();
         return driver;
     }
 }
