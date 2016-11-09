@@ -29,8 +29,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        WebDriver driver = RemoteWebDriverFactory.createInstance("chrome");
-        RemoteDriverManager.setWebDriver(driver);
+
     }
 
     @Override
@@ -67,7 +66,9 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
+        String browserName = iTestContext.getCurrentXmlTest().getParameter("browserName");
+        WebDriver driver = RemoteWebDriverFactory.createInstance(browserName);
+        RemoteDriverManager.setWebDriver(driver);
     }
 
     @Override
