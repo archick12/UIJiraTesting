@@ -12,4 +12,8 @@ public class RemoteDriverManager {
     static void setWebDriver(WebDriver driver) {
         webDriver.set(driver);
     }
+
+    static void closeDriver() {
+        webDriver.get().quit();
+    }
 }

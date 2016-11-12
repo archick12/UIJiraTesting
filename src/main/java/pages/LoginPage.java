@@ -25,7 +25,7 @@ public class LoginPage {
 
     @Step("Enter user password")
     public void enterPassword() {
-        driver.findElement(By.id("login-form-password2")).sendKeys("Polis484)");
+        driver.findElement(By.id("login-form-password")).sendKeys("Polis484)");
     }
 
     @Step("Click login")
