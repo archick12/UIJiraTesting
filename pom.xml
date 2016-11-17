@@ -32,7 +32,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.8.9/aspectjweaver-1.8.9.jar"
                     </argLine>
                     <suiteXmlFiles>
                         <!-- TestNG suite XML files -->
@@ -43,7 +43,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
+                        <version>1.8.9</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -58,17 +58,18 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.8.8</version>
+            <!--<version>6.8.8</version>-->
+            <version>6.9.9</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-testng-adaptor</artifactId>
-            <version>${allure.version}</version>
+            <version>1.4.23.HOTFIX1</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
